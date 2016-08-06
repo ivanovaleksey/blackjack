@@ -1,8 +1,12 @@
 # frozen_string_literal: true
+require 'blackjack/mixins/interacting'
 
 module Blackjack
   class Dealer
+    include Mixins::Interacting
     attr_reader :hand
+
+    PROMPT_NEW_ROUND_OPTIONS = %w(y n).freeze
 
     def initialize(game)
       @game = game
@@ -53,8 +57,7 @@ module Blackjack
     end
 
     def go_on_with_player
-      move = @player.make_move
-      return if move == 's'
+      return if @player.make_move == 'stay'
 
       deal @player
       show_hand @player
@@ -127,7 +130,6 @@ module Blackjack
     end
 
     def deal_to_self
-      puts 'deal_to_self'
       deal(self) until enough?
 
       show_hole_card
@@ -147,17 +149,29 @@ module Blackjack
     end
 
     def show_hand(player)
-      puts player
-      puts player.hand
+      pp do
+        puts player
+        puts player.hand
+      end
     end
 
     def prompt_new_round
-      puts 'Would you like to play another round? (y/n)'
-      gets.chomp == 'n'
+      prompt_text = format('Would you like to play new round? (%{options})',
+                           options: PROMPT_NEW_ROUND_OPTIONS.join('/'))
+      error_text  = 'Invalid answer, try again.'
+      answer = ''
+      prompt(prompt_text, error_text) do |value|
+        if PROMPT_NEW_ROUND_OPTIONS.include? value
+          answer = value
+          puts
+          break
+        end
+      end
+      answer == 'n'
     end
 
     def say_about_money
-      puts format("You have $%s left\n\n", @player.money)
+      pp('*') { puts format('You have $%{money} left', money: @player.money) }
     end
   end
 end
