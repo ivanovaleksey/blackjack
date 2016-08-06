@@ -5,7 +5,7 @@ module Blackjack
     class BustedError < StandardError; end
 
     include Comparable
-    attr_reader :cards
+    attr_reader :cards, :has_ace
 
     BLACKJACK = 21
 
@@ -25,8 +25,12 @@ module Blackjack
     end
 
     def value
-      val = @cards.inject(0) { |a, e| a + e.value }
-      val += 10 if has_ace? && val <= (BLACKJACK - 10)
+      val = @cards.reject(&:ace?).inject(0) { |a, e| a + e.value }
+      ace = @cards.find(&:ace?)
+      if ace
+        ace.value = val <= (BLACKJACK - 11) ? 11 : 1
+        val += ace.value
+      end
       val
     end
 
@@ -42,10 +46,6 @@ module Blackjack
       value > BLACKJACK
     end
 
-    def has_ace?
-      @has_ace
-    end
-
     def hole_card
       @cards.find(&:hole?)
     end
@@ -59,5 +59,7 @@ module Blackjack
       displayed_value -= hole_card.value if hole_card
       format 'Cards: %{cards}, Value: %{value}', cards: @cards.join(', '), value: displayed_value
     end
+
+    alias has_ace? has_ace
   end
 end

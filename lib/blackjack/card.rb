@@ -2,6 +2,8 @@
 
 module Blackjack
   class Card
+    attr_writer :value
+
     def initialize(rank, suit)
       @rank = rank
       @suit = suit
