@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Blackjack::Game do
   let(:game) { described_class.new }
 
@@ -24,5 +26,4 @@ describe Blackjack::Game do
       subject
     end
   end
-
 end

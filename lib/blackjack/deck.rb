@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blackjack
   class Deck
     attr_reader :cards
@@ -29,6 +31,5 @@ module Blackjack
     def to_s
       @cards.join ', '
     end
-
   end
 end
