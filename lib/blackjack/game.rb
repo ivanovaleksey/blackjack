@@ -5,7 +5,7 @@ module Blackjack
     attr_accessor :is_over
     attr_reader :deck
 
-    START_MONEY = 1000
+    START_MONEY = 1_000
 
     RULES = <<-RULES.gsub(/^\s*/, '')
       The game is implemented with the following rules:
