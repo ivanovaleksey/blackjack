@@ -80,6 +80,7 @@ module Blackjack
       end
 
       money = 0
+      # TODO: refactor this
       if @player.blackjack?
         if @hand.blackjack?
           # dealer and player have blackjack => tied
@@ -87,14 +88,16 @@ module Blackjack
           puts format('Tied at blackjack. You get your $%{money} back', money: money)
         else
           # player has blackjack, dealer does not => player wins 3:2
-          money = @player.bet * 2.5
-          puts format('You have blackjack! You win $%{money}', money: money)
+          prize = @player.bet * 1.5
+          money = @player.bet + prize
+          puts format('You have blackjack! You win $%{money}', money: prize)
         end
       else
         if @hand.busted?
           # dealer have busted, player have not => player wins 1:1
-          money = @player.bet * 2
-          puts format('%{player} have busted, you have not. You win $%{money}', player: self, money: money)
+          prize = @player.bet
+          money = @player.bet + prize
+          puts format('%{player} have busted, you have not. You win $%{money}', player: self, money: prize)
         else
           if @player.hand == @hand
             # dealer and player have same score => tied
@@ -102,9 +105,10 @@ module Blackjack
             puts format('Tied at %{score}. You get your $%{money} back', score: @hand.value, money: money)
           elsif @player.hand > @hand
             # player wins 1:1
-            money = @player.bet * 2
+            prize = @player.bet
+            money = @player.bet + prize
             puts format('You win %{winner_score} : %{looser_score}. You win $%{money}',
-                        winner_score: @player.hand.value, looser_score: @hand.value, money: money)
+                        winner_score: @player.hand.value, looser_score: @hand.value, money: prize)
           else
             # player loses
             if @hand.blackjack?
