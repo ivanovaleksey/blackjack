@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blackjack
   class Dealer
     attr_reader :hand
@@ -80,13 +82,13 @@ module Blackjack
       money = 0
       if @player.blackjack?
         if @hand.blackjack?
-            # dealer and player have blackjack => tied
-            money = @player.bet
-            puts format('Tied at blackjack. You get your $%{money} back', money: money)
+          # dealer and player have blackjack => tied
+          money = @player.bet
+          puts format('Tied at blackjack. You get your $%{money} back', money: money)
         else
-            # player has blackjack, dealer does not => player wins 3:2
-            money = @player.bet * 2.5
-            puts format('You have blackjack! You win $%{money}', money: money)
+          # player has blackjack, dealer does not => player wins 3:2
+          money = @player.bet * 2.5
+          puts format('You have blackjack! You win $%{money}', money: money)
         end
       else
         if @hand.busted?
@@ -136,11 +138,11 @@ module Blackjack
     end
 
     def hide_hole_card
-      self.hand.hole_card.hide!
+      @hand.hole_card.hide!
     end
 
     def show_hole_card
-      self.hand.hole_card.show!
+      @hand.hole_card.show!
     end
 
     def enough?
@@ -160,6 +162,5 @@ module Blackjack
     def say_about_money
       puts format("You have $%s left\n\n", @player.money)
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'blackjack/card'
 require 'blackjack/dealer'
 require 'blackjack/deck'

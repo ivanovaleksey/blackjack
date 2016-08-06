@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Blackjack
   class Card
-
     def initialize(rank, suit)
       @rank = rank
       @suit = suit
@@ -10,9 +11,9 @@ module Blackjack
     def value
       @value ||=
         case @rank
-          when 2..10         then @rank
-          when 'J', 'Q', 'K' then 10
-          when 'A'           then 1
+        when 2..10         then @rank
+        when 'J', 'Q', 'K' then 10
+        when 'A'           then 1
         end
     end
 
@@ -35,6 +36,5 @@ module Blackjack
     def to_s
       hole? ? 'Hole' : format('%s %s', @rank, @suit)
     end
-
   end
 end

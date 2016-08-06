@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blackjack
   class Game
     attr_accessor :is_over
@@ -52,6 +54,5 @@ module Blackjack
     def dealer
       Dealer.new self
     end
-
   end
 end

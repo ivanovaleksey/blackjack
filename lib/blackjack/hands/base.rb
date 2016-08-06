@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blackjack
   module Hands
     class BustedError < StandardError; end
@@ -25,7 +27,7 @@ module Blackjack
       end
 
       def value
-        val = @cards.inject(0) { |sum, card| sum + card.value }
+        val = @cards.inject(0) { |a, e| a + e.value }
         val += 10 if has_ace? && val <= (BLACKJACK - 10)
         val
       end
@@ -59,7 +61,6 @@ module Blackjack
         displayed_value -= hole_card.value if hole_card
         format 'Cards: %s, Value: %s (%s)', @cards.join(', '), displayed_value, value
       end
-
     end
   end
 end
