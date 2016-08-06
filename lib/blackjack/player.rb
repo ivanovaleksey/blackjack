@@ -8,7 +8,7 @@ module Blackjack
 
     def initialize(name, money)
       @name = name
-      @hand = Hands::Player.new
+      @hand = Hand.new
       @money = money
     end
 
@@ -29,7 +29,7 @@ module Blackjack
     end
 
     def charge(sum)
-      @money += sum
+      @money += sum.to_i
     end
 
     def to_s

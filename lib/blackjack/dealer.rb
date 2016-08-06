@@ -6,7 +6,7 @@ module Blackjack
 
     def initialize(game)
       @game = game
-      @hand = Hands::Dealer.new
+      @hand = Hand.new
       @bet  = 0
     end
 
@@ -47,8 +47,8 @@ module Blackjack
     def play_round
       puts 'play_round'
       go_on_with_player unless @player.blackjack?
-      deal_to_self unless @hand.blackjack?
-    rescue Hands::BustedError
+      deal_to_self unless @hand.blackjack? # TODO: unless can_have_blackjack?
+    rescue Hand::BustedError
       return
     end
 
@@ -63,15 +63,13 @@ module Blackjack
 
       if @player.busted?
         show_hand @player
-        raise Hands::BustedError
+        raise Hand::BustedError
       end
 
       go_on_with_player
     end
 
     def count_bets
-      p 'count_bets'
-
       if @player.busted?
         # player loses
         puts 'You have busted => you lose'
@@ -138,7 +136,7 @@ module Blackjack
     end
 
     def hide_hole_card
-      @hand.hole_card.hide!
+      @hand.cards.last.hide!
     end
 
     def show_hole_card

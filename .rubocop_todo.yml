@@ -63,4 +63,9 @@ Style/IfInsideElse:
 Style/PredicateName:
   Exclude:
     - 'spec/**/*'
-    - 'lib/blackjack/hands/base.rb'
+    - 'lib/blackjack/hand.rb'
+
+# Offense count: 1
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'bin/game'

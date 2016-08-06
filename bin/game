@@ -1,7 +1,6 @@
-# frozen_string_literal: true
 #!/usr/bin/env ruby
 
-$:.unshift File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'blackjack'
 
 Blackjack::Game.new.start
