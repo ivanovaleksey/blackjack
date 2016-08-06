@@ -1,4 +1,4 @@
-# Blackjack
+# Blackjack [![Build Status](https://travis-ci.org/ivanovaleksey/posts.svg)](https://travis-ci.org/ivanovaleksey/posts)
 
 Необходимо написать реализацию игры BlackJack (не “Очко”) по самым простым правилам (https://en.wikipedia.org/wiki/Blackjack).
 Должна быть возможность взаимодействовать с программой в качестве игрока любым способом: консоль, веб-интерфейс, все что угодно.
