@@ -41,13 +41,13 @@ module Blackjack
 
       show_hand @player
       show_hand self
-      p '--------------'
     end
 
     def play_round
-      puts 'play_round'
-      go_on_with_player unless @player.blackjack?
-      deal_to_self unless @hand.blackjack? # TODO: unless can_have_blackjack?
+      unless @player.blackjack?
+        go_on_with_player
+        deal_to_self unless @hand.blackjack?
+      end
     rescue Hand::BustedError
       return
     end
@@ -59,7 +59,6 @@ module Blackjack
       deal @player
       show_hand @player
       show_hand self
-      p '--------------'
 
       if @player.busted?
         show_hand @player
