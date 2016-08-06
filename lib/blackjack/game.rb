@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+require 'blackjack/mixins/interacting'
 
 module Blackjack
   class Game
+    include Mixins::Interacting
     attr_accessor :is_over
     attr_reader :deck
 
@@ -37,11 +39,11 @@ module Blackjack
     private
 
     def say_greetings
-      puts 'Hi there!'
+      pp('~') { puts 'Hi there!' }
     end
 
     def say_rules
-      puts RULES
+      pp('~') { puts RULES }
     end
 
     def define_player
