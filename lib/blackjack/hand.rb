@@ -5,7 +5,8 @@ module Blackjack
     class BustedError < StandardError; end
 
     include Comparable
-    attr_reader :cards, :has_ace
+    extend Forwardable
+    attr_accessor :cards
 
     BLACKJACK = 21
 
@@ -15,13 +16,6 @@ module Blackjack
 
     def refresh
       @cards = []
-      @value = 0
-      @has_ace = false
-    end
-
-    def push(card)
-      @has_ace ||= card.ace?
-      @cards << card
     end
 
     def value
@@ -60,6 +54,6 @@ module Blackjack
       format 'Cards: %{cards}, Value: %{value}', cards: @cards.join(', '), value: displayed_value
     end
 
-    alias has_ace? has_ace
+    def_delegators :@cards, :push
   end
 end
