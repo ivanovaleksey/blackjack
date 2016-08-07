@@ -63,11 +63,7 @@ module Blackjack
       show_hand @player
       show_hand self
 
-      if @player.busted?
-        show_hand @player
-        raise Hand::BustedError
-      end
-
+      raise Hand::BustedError if @player.busted?
       go_on_with_player
     end
 
