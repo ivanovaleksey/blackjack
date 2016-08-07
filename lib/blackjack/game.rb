@@ -39,7 +39,12 @@ module Blackjack
     private
 
     def say_greetings
-      pp('~') { puts 'Hi there!' }
+      pp('~') do
+        puts <<-GREETING.gsub(/^\s*/, '')
+          'Hi there!'
+          Welcome to Blackjack v#{version}
+        GREETING
+      end
     end
 
     def say_rules
@@ -55,6 +60,10 @@ module Blackjack
 
     def dealer
       Dealer.new self
+    end
+
+    def version
+      @version ||= `cat .version`.strip
     end
   end
 end
