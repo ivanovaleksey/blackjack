@@ -38,7 +38,7 @@ module Blackjack
     def say_greetings
       pp('~') do
         puts <<-GREETING.gsub(/^\s*/, '')
-          'Hi there!'
+          Hi there!
           Welcome to Blackjack v#{version}
         GREETING
       end
