@@ -1,4 +1,6 @@
-# Blackjack [![Build Status](https://travis-ci.org/ivanovaleksey/blackjack.svg)](https://travis-ci.org/ivanovaleksey/blackjack)
+# Blackjack
+[![Build Status](https://travis-ci.org/ivanovaleksey/blackjack.svg)](https://travis-ci.org/ivanovaleksey/blackjack)
+[![Code Climate](https://codeclimate.com/github/ivanovaleksey/blackjack/badges/gpa.svg)](https://codeclimate.com/github/ivanovaleksey/blackjack)
 
 ## Rules
 
