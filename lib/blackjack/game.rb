@@ -4,8 +4,7 @@ require 'blackjack/mixins/interacting'
 module Blackjack
   class Game
     include Mixins::Interacting
-    attr_accessor :is_over
-    attr_reader :deck
+    attr_accessor :deck, :is_over
 
     START_MONEY = 1_000
 
@@ -32,14 +31,17 @@ module Blackjack
       puts 'Good bye! Thanks for the game.'
     end
 
-    def over?
-      @is_over
-    end
+    alias over? is_over
 
     private
 
     def say_greetings
-      pp('~') { puts 'Hi there!' }
+      pp('~') do
+        puts <<-GREETING.gsub(/^\s*/, '')
+          'Hi there!'
+          Welcome to Blackjack v#{version}
+        GREETING
+      end
     end
 
     def say_rules
@@ -55,6 +57,10 @@ module Blackjack
 
     def dealer
       Dealer.new self
+    end
+
+    def version
+      @version ||= `cat .version`.strip
     end
   end
 end
