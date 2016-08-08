@@ -4,7 +4,7 @@ require 'blackjack/mixins/interacting'
 module Blackjack
   class Dealer
     include Mixins::Interacting
-    attr_reader :hand
+    attr_accessor :bet, :hand
 
     PROMPT_NEW_ROUND_OPTIONS = %w(y n).freeze
 

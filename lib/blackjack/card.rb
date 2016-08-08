@@ -2,7 +2,9 @@
 
 module Blackjack
   class Card
+    attr_reader :rank, :suit
     attr_writer :value
+    attr_accessor :is_hole
 
     def initialize(rank, suit)
       @rank = rank
@@ -31,12 +33,10 @@ module Blackjack
       @is_hole = false
     end
 
-    def hole?
-      @is_hole
-    end
-
     def to_s
       hole? ? 'Hole' : format('%s %s', @rank, @suit)
     end
+
+    alias hole? is_hole
   end
 end
