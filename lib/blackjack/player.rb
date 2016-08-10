@@ -4,6 +4,9 @@ require 'blackjack/mixins/interacting'
 
 module Blackjack
   class Player
+    class NoMoneyError < StandardError; end
+    class WouldNotPlayError < StandardError; end
+
     include Mixins::Interacting
     extend Forwardable
     attr_reader :bet, :hand, :money, :name
@@ -51,11 +54,14 @@ module Blackjack
       @money += sum.to_i
     end
 
+    def money?
+      @money.positive?
+    end
+
     def to_s
       @name
     end
 
-    def_delegators :@hand, :busted?
-    def_delegators :@hand, :blackjack?
+    def_delegators :@hand, :busted?, :blackjack?
   end
 end
