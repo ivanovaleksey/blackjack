@@ -9,6 +9,7 @@ module Blackjack
     PROMPT_NEW_ROUND_OPTIONS = %w(y n).freeze
 
     def initialize(game)
+      @name = 'Dealer'
       @game = game
       @hand = Hand.new
       @bet  = 0
@@ -20,7 +21,7 @@ module Blackjack
     end
 
     def to_s
-      'Dealer'
+      @name
     end
 
     private
@@ -29,7 +30,10 @@ module Blackjack
       prepare_round
       play_round
       count_bets
-      @game.is_over = prompt_new_round
+      check_money
+      prompt_new_round
+    rescue Player::NoMoneyError, Player::WouldNotPlayError
+      @game.is_over = true
     end
 
     def prepare_round
@@ -167,11 +171,17 @@ module Blackjack
           break
         end
       end
-      answer == 'n'
+      raise Player::WouldNotPlayError if answer == 'n'
     end
 
     def say_about_money
       pp('*') { puts format('You have $%{money} left', money: @player.money) }
+    end
+
+    def check_money
+      return if @player.money?
+      pp('#') { puts 'Sorry, you are out of the money' }
+      raise Player::NoMoneyError
     end
   end
 end
