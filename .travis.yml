@@ -1,8 +1,8 @@
 language: ruby
-
 script:
-  - bundle exec rubocop
-  - bundle exec rspec
-
+- bundle exec rubocop
+- bundle exec rspec
 notifications:
   email: false
+  slack:
+    secure: Jf32spqfV68usBd3/QHBiOmSqnV1I4Mt0Yvhz2cOo+T/Ajt+2pDMbAr5PCLpybodGjbwAgoYDU6PnPdc5/HDWbP8rKBedCm8WYoA+Y5fb0dH3Hhm6lQWLPZThEprCZ7F2PfEKy9UHRdmrWBVv15opWGhydhYZpZMLMm9QX4Keb473/S58LRyYKkieU/AlTokcOP9tlCtsD6vcXDs9PZaIWNj0py3s0Re+OkiaNMAs+ot42ItL6DO74ve02mvoEpGPTdPDKNx3PiHTWN04S8Rvb+5D/70Yu/wfTpnf5SLGU8Qidm7O3YUQ1tn/Jlx1sDKcScGpf503ZvFLwqC5CY9LrqGtKTld+WjjJPAkYeGLWgZfYbrWGF1kRE2UZbGD/1k5U51kMQQBb5EnSliFwvpq1xBUdTccGyBIX3wDEC0k1BizWuyJz+dxql93QOflcf82EM63nDqxbTChr4WzHYtnqkf0tHENAaXlDFFCoyDqEz0mqINZ3ReDrmOhu14Wn1wlXARlh0dsPO+KhCbYWMyFolMAWVAaXZoi1zqCQokZzhWBVOamKGwERKIJjku2zk1Snn9BacpbObaYcTYmYBAHLjozcweX7vOmyku4OCmiCwTZ0FJBu+Fc9NAj7AgJ8nnmVWWiD2E/siJAVG2ZoZq9ZwV0FtN5hE0MKmCIWYsMsI=
